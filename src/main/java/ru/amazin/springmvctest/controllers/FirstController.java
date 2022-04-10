@@ -11,6 +11,7 @@ import ru.amazin.springmvctest.Helpers.Calculator;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@RequestMapping("/first")
 public class FirstController {
 
     @Autowired
@@ -20,7 +21,7 @@ public class FirstController {
 
     private Calculator calculator;
 
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public String hello(@RequestParam(value = "name", required = false) String name,
                         @RequestParam(value = "surname", required = false) String surname,
                         Model model) {
@@ -34,13 +35,13 @@ public class FirstController {
         return "first/goodbye";
     }
 
-    @GetMapping("/simple/calculator")
+    @GetMapping("/calculator")
     public String simpleCalculator(@RequestParam(value = "a") int a,
                                    @RequestParam(value = "b") int b,
                                    @RequestParam(value = "operation") String operation,
                                    Model model) {
 
         model.addAttribute("result", calculator.getCalculation(a, b, operation));
-        return "simple/calculator";
+        return "first/calculator";
     }
 }
